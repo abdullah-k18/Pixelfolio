@@ -1,101 +1,292 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [showNextSection, setShowNextSection] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const handleButtonClick = () => {
+    setShowNextSection(true);
+  };
+
+  const handleCardClick = (section) => {
+    setActiveSection(section);
+  };
+
+  return (
+    <div
+      className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"
+      style={{
+        backgroundImage: "url('/bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {!showNextSection ? (
+        <main className="flex flex-col gap-6 row-start-2 items-center text-center">
+          <h1 className="text-3xl sm:text-5xl font-bold text-black">
+            Press Enter to Continue
+          </h1>
+          <button
+            onClick={handleButtonClick}
+            className="px-6 py-3 bg-black text-white text-lg rounded-lg hover:bg-gray-700 transition-all"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            Enter
+          </button>
+        </main>
+      ) : (
+        <main className="flex flex-col gap-8 row-start-2 items-center text-center">
+          <p className="text-black text-lg sm:text-xl">
+            Choose where you want to go:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <button
+              onClick={() => handleCardClick("aboutMe")}
+              className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all"
+            >
+              <h2 className="text-xl font-semibold text-black">About Me</h2>
+              <p className="text-gray-600 mt-2">
+                Learn more about who I am and my journey.
+              </p>
+            </button>
+            <button
+              onClick={() => handleCardClick("skills")}
+              className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all"
+            >
+              <h2 className="text-xl font-semibold text-black">Skills</h2>
+              <p className="text-gray-600 mt-2">
+                Explore my technical expertise and soft skills.
+              </p>
+            </button>
+            <button
+              onClick={() => handleCardClick("projects")}
+              className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all"
+            >
+              <h2 className="text-xl font-semibold text-black">Projects</h2>
+              <p className="text-gray-600 mt-2">
+                Check out the exciting projects I&apos;ve worked on.
+              </p>
+            </button>
+            <button
+              onClick={() => handleCardClick("socials")}
+              className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all"
+            >
+              <h2 className="text-xl font-semibold text-black">Socials</h2>
+              <p className="text-gray-600 mt-2">
+                Connect with me on my social platforms.
+              </p>
+            </button>
+          </div>
+
+          {activeSection === "aboutMe" && (
+            <section className="my-20">
+              <h2
+                className="text-3xl font-semibold text-white mb-5"
+                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
+              >
+                About Me
+              </h2>
+              <p
+                className="text-lg text-white mt-4"
+                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+              >
+                As a final year Computer Science student, I am passionate about
+                harnessing technology to tackle real-world challenges. With
+                extensive experience in integrating AI into web applications, I
+                excel in frontend web development. I am dedicated to creating
+                innovative solutions that drive positive change.
+              </p>
+              <p
+                className="text-lg text-white mt-4"
+                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+              >
+                My hands-on experience with various projects has equipped me
+                with the skills to build user-friendly and efficient web
+                applications. I actively share my knowledge and insights through
+                articles on Hashnode and Medium, aiming to inspire and educate
+                fellow tech enthusiasts.
+              </p>
+            </section>
+          )}
+          {activeSection === "skills" && (
+            <section className="my-20">
+              <h2 className="text-3xl font-semibold text-white mb-5">Skills</h2>
+
+              <div className="flex flex-wrap gap-4">
+                <button className="nes-badge">
+                  <span className="nes-badge is-dark">HTML</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-primary">CSS</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-success">JavaScript</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-warning">Next.js</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-error">React.js</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-dark">Tailwind CSS</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-primary">Bootstrap</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-success">Material UI</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-warning">Python</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-error">LangChain</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-dark">LangGraph</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-primary">Firebase</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-success">Three.js</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-warning">NES.css</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-error">RAG</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-dark">Clerk</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-primary">Stripe</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-success">Git</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-warning">Linux</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-error">Streamlit</span>
+                </button>
+                <button className="nes-badge">
+                  <span className="nes-badge is-dark">Scikit-Learn</span>
+                </button>
+              </div>
+            </section>
+          )}
+          {activeSection === "projects" && (
+            <section className="my-20">
+            <h2 className="text-3xl font-semibold text-white mb-5"style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}>Projects</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all">
+                <h3 className="text-xl font-semibold text-black">PrintHub</h3>
+                <p className="text-gray-600 mt-2">PrintHub connects users with local printing presses for easy booking, featuring search, product listings, and user reviews.</p>
+                <a
+                  href="https://github.com/abdullah-k18/PrintHub"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon github is-medium"></i>
+                  </button>
+                </a>
+              </div>
+          
+              <div className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all">
+                <h3 className="text-xl font-semibold text-black">Sum-Meet-Script</h3>
+                <p className="text-gray-600 mt-2">
+                Sum-Meet-Script generates meeting transcripts, speaker identification, and summaries from uploaded audio, powered by AssemblyAI and built with Next.js and Tailwind CSS.</p>
+                <a
+                  href="https://github.com/abdullah-k18/Sum-Meet-Script"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon github is-medium"></i>
+                  </button>
+                </a>
+              </div>
+          
+              <div className="p-6 bg-white rounded-lg shadow-lg text-center hover:shadow-xl transition-all">
+                <h3 className="text-xl font-semibold text-black">Obital View</h3>
+                <p className="text-gray-600 mt-2">Created an app to visualize the solar system and celestial bodies using Three.js, HTML, CSS, and JavaScript for the NASA Space Apps Challenge.</p>
+                <a
+                  href="https://github.com/abdullah-k18/Orrery-Web-App-that-Displays-Near-Earth-Objects"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon github is-medium"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </section>
+          
+          )}
+          {activeSection === "socials" && (
+            <section className="my-20">
+              <h2 className="text-3xl font-semibold text-white mb-5">
+                Socials
+              </h2>
+              <div className="flex justify-between space-x-4">
+                <a
+                  href="https://www.linkedin.com/in/abdullah-k18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon linkedin is-medium"></i>
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/abdullah-k18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon github is-medium"></i>
+                  </button>
+                </a>
+                <a
+                  href="mailto:abdullahkoraal@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon gmail is-medium"></i>
+                  </button>
+                </a>
+                <a
+                  href="https://medium.com/@abdullahk18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon medium is-medium"></i>
+                  </button>
+                </a>
+                <a
+                  href="https://www.youtube.com/@abdulla_k18"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button>
+                    <i className="nes-icon youtube is-medium"></i>
+                  </button>
+                </a>
+              </div>
+            </section>
+          )}
+        </main>
+      )}
     </div>
   );
 }
