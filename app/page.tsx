@@ -4,13 +4,13 @@ import { useState } from "react";
 
 export default function Home() {
   const [showNextSection, setShowNextSection] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState("");
 
   const handleButtonClick = () => {
     setShowNextSection(true);
   };
 
-  const handleCardClick = (section) => {
+  const handleCardClick = (section: string) => {
     setActiveSection(section);
   };
 
