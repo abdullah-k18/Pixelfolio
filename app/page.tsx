@@ -81,33 +81,30 @@ export default function Home() {
 
           {activeSection === "aboutMe" && (
             <section className="my-20">
-              <h2
-                className="text-3xl font-semibold text-white mb-5"
-                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
-              >
-                About Me
-              </h2>
-              <p
-                className="text-lg text-white mt-4"
-                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
-              >
-                As a final year Computer Science student, I am passionate about
-                harnessing technology to tackle real-world challenges. With
-                extensive experience in integrating AI into web applications, I
-                excel in frontend web development. I am dedicated to creating
-                innovative solutions that drive positive change.
-              </p>
-              <p
-                className="text-lg text-white mt-4"
-                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
-              >
-                My hands-on experience with various projects has equipped me
-                with the skills to build user-friendly and efficient web
-                applications. I actively share my knowledge and insights through
-                articles on Hashnode and Medium, aiming to inspire and educate
-                fellow tech enthusiasts.
-              </p>
-            </section>
+            <h2
+              className="text-3xl font-semibold text-white mb-5"
+              style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
+            >
+              About Me
+            </h2>
+            <p
+              className="text-lg text-white mt-4"
+              style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+            >
+              My name is Abdullah Bin Altaf. As a final year Computer Science student, I am passionate about
+              harnessing technology to tackle real-world challenges. With extensive experience in integrating AI into web applications, I
+              excel in frontend web development. I am dedicated to creating innovative solutions that drive positive change.
+            </p>
+            <p
+              className="text-lg text-white mt-4"
+              style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+            >
+              I actively participate in virtual hackathons and collaborative tech events, where I work on solving challenges and building projects with like-minded individuals. My hands-on experience with various projects has equipped me
+              with the skills to build user-friendly and efficient web applications. I also actively share my knowledge and insights through
+              articles on Hashnode and Medium, aiming to inspire and educate fellow tech enthusiasts.
+            </p>
+          </section>
+          
           )}
           {activeSection === "skills" && (
             <section className="my-20">
